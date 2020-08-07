@@ -29,21 +29,8 @@
     owner: "{{ jenkins_user}}"
   register: casc_config
 
-- name: Add repository
-  yum_repository:
-    name: jenkins
-    description: Jenkins official repository
-    baseurl: "{{ jenkins_repo_baseurl }}"
-    gpgkey: "{{ jenkins_repo_gpgkey }}"
-    gpgcheck: True
-
-- name: Install packages
-  yum:
-    name:
-      - java-1.8.0-openjdk
-      - jenkins
-    state: latest
-    update_cache: True
+- include_tasks: centos/packages.yml
+  when: docker_ce_enable and ( ansible_distribution|lower == 'centos' or ansible_distribution|lower == 'redhat' or ansible_distribution|lower == 'amazon' )
 
 - name: Copy plugins install script
   copy:

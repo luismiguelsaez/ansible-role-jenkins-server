@@ -1,0 +1,17 @@
+---
+
+- name: Add repository
+  yum_repository:
+    name: jenkins
+    description: Jenkins official repository
+    baseurl: "{{ jenkins_repo_baseurl }}"
+    gpgkey: "{{ jenkins_repo_gpgkey }}"
+    gpgcheck: True
+
+- name: Install packages
+  yum:
+    name:
+      - java-1.8.0-openjdk
+      - jenkins
+    state: latest
+    update_cache: True
