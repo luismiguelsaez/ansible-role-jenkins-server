@@ -1,0 +1,7 @@
+---
+
+- name: Modify jenkins config file
+  lineinfile:
+    path: /etc/sysconfig/jenkins
+    regexp: "^JENKINS_HOME="
+    line: 'JENKINS_HOME="{{ jenkins_home }}"'

@@ -32,6 +32,9 @@
 - include_tasks: centos/packages.yml
   when: ansible_distribution|lower == 'centos' or ansible_distribution|lower == 'redhat' or ansible_distribution|lower == 'amazon'
 
+- include_tasks: centos/config.yml
+  when: ansible_distribution|lower == 'centos' or ansible_distribution|lower == 'redhat' or ansible_distribution|lower == 'amazon'
+
 - name: Copy plugins install script
   copy:
     src: plugin/install-plugins.sh
