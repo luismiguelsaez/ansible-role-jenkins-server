@@ -1,0 +1,10 @@
+---
+
+jenkins_home: /var/lib/jenkins
+jenkins_user: jenkins
+jenkins_groups: [ jenkins" ]
+
+jenkins_repo_baseurl: http://pkg.jenkins.io/redhat-stable
+jenkins_repo_gpgkey: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+jenkins_plugins: [ "configuration-as-code" ]
