@@ -30,7 +30,7 @@
   register: casc_config
 
 - include_tasks: centos/packages.yml
-  when: docker_ce_enable and ( ansible_distribution|lower == 'centos' or ansible_distribution|lower == 'redhat' or ansible_distribution|lower == 'amazon' )
+  when: ansible_distribution|lower == 'centos' or ansible_distribution|lower == 'redhat' or ansible_distribution|lower == 'amazon'
 
 - name: Copy plugins install script
   copy:
