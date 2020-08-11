@@ -13,5 +13,6 @@
     name:
       - java-1.8.0-openjdk
       - jenkins
+      - initscripts
     state: latest
     update_cache: True
