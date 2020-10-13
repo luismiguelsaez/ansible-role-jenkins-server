@@ -10,6 +10,10 @@ driver:
 
 platforms:
   - name: instance-${MOLECULE_ROLE_NAME:-molecule}-1
+    interfaces:
+      - network_name: forwarded_port
+        guest: 8080
+        host: 8080
     groups:
       - jenkins
     box: centos/7
@@ -21,9 +25,6 @@ provisioner:
   log: true
   options:
     become: true
-  group_vars:
-    jenkins:
-      jenkins_java_jvm_memory: 1024
 
 verifier:
   name: ansible
