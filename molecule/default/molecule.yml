@@ -1,13 +1,29 @@
 ---
+
 dependency:
   name: galaxy
+
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: VBox
+
 platforms:
-  - name: instance
-    image: docker.io/pycontribs/centos:8
-    pre_build_image: true
+  - name: instance-${MOLECULE_ROLE_NAME:-molecule}-1
+    groups:
+      - jenkins
+    box: centos/7
+    memory: 1024
+    cpus: 1
+
 provisioner:
   name: ansible
+  log: true
+  options:
+    become: true
+  group_vars:
+    jenkins:
+      jenkins_java_jvm_memory: 1024
+
 verifier:
   name: ansible
