@@ -24,7 +24,7 @@
 
 - name: Copy CASC configuration
   template:
-    src: casc/jenkins.yaml
+    src: "{{ jenkins_casc_template_file }}"
     dest: "{{ jenkins_home }}/jenkins.yaml"
     owner: "{{ jenkins_user}}"
   register: casc_config

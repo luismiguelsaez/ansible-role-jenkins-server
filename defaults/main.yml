@@ -8,3 +8,7 @@ jenkins_repo_baseurl: http://pkg.jenkins.io/redhat-stable
 jenkins_repo_gpgkey: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
 jenkins_plugins: [ "configuration-as-code" ]
+
+jenkins_casc_template_file: casc/jenkins.yaml
+
+#jenkins_java_jvm_memory: 1024
