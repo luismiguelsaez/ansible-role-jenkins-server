@@ -12,4 +12,5 @@ jenkins_plugins: [ "configuration-as-code" ]
 
 jenkins_casc_template_file: casc/jenkins.yaml
 
-#jenkins_java_jvm_memory: 1024
+jenkins_config_java_jvm_memory: "{{ ansible_memtotal_mb / 2 }}"
+jenkins_config_port: 8080

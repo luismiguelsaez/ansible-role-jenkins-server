@@ -1,13 +1,15 @@
 ---
 
-- name: Modify jenkins config file JENKINS_HOME
+- name: Modify jenkins config file
   lineinfile:
     path: /etc/sysconfig/jenkins
-    regexp: "^JENKINS_HOME="
-    line: 'JENKINS_HOME="{{ jenkins_home }}"'
-
-- name: Modify jenkins config file JAVA_ARGS
-  lineinfile:
-    path: /etc/sysconfig/jenkins
-    regexp: "^JAVA_ARGS="
-    line: 'JAVA_ARGS="-Xmx{{ jenkins_java_jvm_memory|default(ansible_memtotal_mb) }}m"'
+    regexp: "{{ item.regex }}"
+    line:  "{{ item.line }}"
+    backrefs: True
+  with_items:
+    - regex: '^JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true"$'
+      line: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Xmx{{ jenkins_config_java_jvm_memory | int | round }}m"'
+    - regex: '^JENKINS_HOME='
+      line: 'JENKINS_HOME="{{ jenkins_home }}"'
+    - regex: '^JENKINS_PORT='
+      line: 'JENKINS_PORT="{{ jenkins_config_port }}"'
