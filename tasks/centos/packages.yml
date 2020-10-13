@@ -10,9 +10,6 @@
 
 - name: Install packages
   yum:
-    name:
-      - java-1.8.0-openjdk
-      - jenkins
-      - initscripts
+    name: "{{ jenkins_repo_packages }}"
     state: latest
     update_cache: True
