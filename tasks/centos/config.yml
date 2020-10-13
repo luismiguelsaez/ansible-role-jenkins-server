@@ -13,3 +13,4 @@
       line: 'JENKINS_HOME="{{ jenkins_home }}"'
     - regex: '^JENKINS_PORT='
       line: 'JENKINS_PORT="{{ jenkins_config_port }}"'
+  notify: Restart jenkins service
