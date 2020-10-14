@@ -14,3 +14,9 @@ jenkins_casc_template_file: casc/jenkins.yaml
 jenkins_config_home: /var/lib/jenkins
 jenkins_config_java_jvm_memory: "{{ ansible_memtotal_mb / 2 }}"
 jenkins_config_port: 8080
+jenkins_config_wizard_enable: "false"
+jenkins_config_location_port: 8080
+jenkins_config_location_server: "127.0.0.1"
+jenkins_config_location_protocol: http
+jenkins_config_admin_name: administrator
+jenkins_config_admin_pass: 4dm1nUs3r

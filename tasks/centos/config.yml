@@ -8,7 +8,7 @@
     backrefs: True
   with_items:
     - regex: '^JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true"$'
-      line: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Xmx{{ jenkins_config_java_jvm_memory | int | round }}m"'
+      line: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djenkins.install.runSetupWizard={{ jenkins_config_wizard_enable }} -Xmx{{ jenkins_config_java_jvm_memory | int | round }}m"'
     - regex: '^JENKINS_HOME='
       line: 'JENKINS_HOME="{{ jenkins_config_home }}"'
     - regex: '^JENKINS_PORT='

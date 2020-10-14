@@ -29,8 +29,8 @@ jenkins:
       allowsSignup: false
       enableCaptcha: false
       users:
-      - id: administrator
-        password: 4dm1nUs3r
+      - id: {{ jenkins_config_admin_name }}
+        password: {{ jenkins_config_admin_pass }}
     #ldap:
     #  configurations:
     #  - displayNameAttributeName: "cn"
@@ -43,6 +43,10 @@ jenkins:
     #    userSearchBase: "ou=People"
     #  disableMailAddressResolver: false
     #  disableRolePrefixing: true
+
+unclassified:
+  location:
+    url: "{{ jenkins_config_location_protocol }}://{{ jenkins_config_location_server }}:{{ jenkins_config_location_port }}/"
 
 #unclassified:
 #  anchore:
