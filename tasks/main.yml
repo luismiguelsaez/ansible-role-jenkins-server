@@ -9,7 +9,7 @@
   user:
     name: jenkins
     comment: Jenkins Automation Server
-    home: "{{ jenkins_home }}"
+    home: "{{ jenkins_config_home }}"
     shell: /bin/false
     groups: "{{ jenkins_groups }}"
 
@@ -19,14 +19,14 @@
     path: "{{ item }}"
     owner: "{{ jenkins_user}}"
   with_items:
-    - "{{ jenkins_home }}"
-    - "{{ jenkins_home }}/plugins"
+    - "{{ jenkins_config_home }}"
+    - "{{ jenkins_config_home }}/plugins"
 
 - name: Copy CASC configuration
   template:
     src: "{{ jenkins_casc_template_file }}"
-    dest: "{{ jenkins_home }}/jenkins.yaml"
-    owner: "{{ jenkins_user}}"
+    dest: "{{ jenkins_config_home }}/jenkins.yaml"
+    owner: "{{ jenkins_user }}"
   register: casc_config
   notify: Restart jenkins service
 
@@ -44,7 +44,7 @@
     owner: "{{ jenkins_user}}"
 
 - name: Install plugins
-  command: "/usr/lib/jenkins/install-plugins.sh {{ jenkins_home }}{% for p in jenkins_plugins %} {{ p }}{% endfor %}"
+  command: "/usr/lib/jenkins/install-plugins.sh {{ jenkins_config_home }}{% for p in jenkins_plugins %} {{ p }}{% endfor %}"
   register: plugins_install
   changed_when: "plugins_install.stdout == 'CHANGED'"
   notify: Restart jenkins service
@@ -52,7 +52,7 @@
 - name: Ensure jenkins plugins permissions
   file:
     state: directory
-    path: "{{ jenkins_home }}/plugins"
+    path: "{{ jenkins_config_home }}/plugins"
     recurse: True
     owner: "{{ jenkins_user}}"
 
