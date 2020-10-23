@@ -25,6 +25,10 @@ provisioner:
   log: true
   options:
     become: true
+  inventory:
+    group_vars:
+      jenkins:
+        jenkins_plugins: [ "configuration-as-code","ec2" ]
 
 verifier:
   name: ansible

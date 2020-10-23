@@ -19,3 +19,9 @@ $ . .venv/bin/activate
 (.venv) $ molecule idempotence
 (.venv) $ molecule destroy
 ```
+
+## Connect to server
+
+Once the server is deployed, you can access and test it through http://127.0.0.1:8080/
+
+Configuration as code ( CasC ) reference could be acceshed through http://127.0.0.1:8080/configuration-as-code/reference
