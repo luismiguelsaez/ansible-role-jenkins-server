@@ -17,7 +17,7 @@ doInstall(){
 
   if `grep "Plugin-Dependencies:" ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF >/dev/null 2>&1`
   then
-    for PD in $(grep "Plugin-Dependencies:" ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF | sed 's/Plugin-Dependencies://g')
+    for PD in $(grep "Plugin-Dependencies:" ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF | sed 's/Plugin-Dependencies://g' | tr "," " " )
     do
       doInstall $PD
     done
