@@ -25,7 +25,7 @@ provisioner:
   log: true
   options:
     become: true
-    vvv: true
+    vvv: false
   inventory:
     group_vars:
       jenkins:
