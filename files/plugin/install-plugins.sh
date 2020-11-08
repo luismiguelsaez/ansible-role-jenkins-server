@@ -13,11 +13,13 @@ doInstall(){
  then 
   curl -sL https://updates.jenkins-ci.org/latest/${NAME}.hpi -o ${JENKINS_HOME}/plugins/${NAME}.hpi
 
-  unzip -qu -d ${JENKINS_HOME}/plugins/${NAME} ${JENKINS_HOME}/plugins/${NAME}.hpi
+  #unzip -qu -d ${JENKINS_HOME}/plugins/${NAME} ${JENKINS_HOME}/plugins/${NAME}.hpi
 
-  if `grep "Plugin-Dependencies:" ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF >/dev/null 2>&1`
+  #if `grep "Plugin-Dependencies:" ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF >/dev/null 2>&1`
+  if `unzip -p ${JENKINS_HOME}/plugins/${NAME}.hpi META-INF/MANIFEST.MF | grep "Plugin-Dependencies:" >/dev/null 2>&1`
   then
-    for PD in $(cat ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF | tr -d '\r' | sed -e ':a;N;$!ba;s/\n //g' | grep "Plugin-Dependencies:" | sed -e 's/Plugin-Dependencies://g' -e 's/,/ /g' )
+    #for PD in $(cat ${JENKINS_HOME}/plugins/${NAME}/META-INF/MANIFEST.MF | tr -d '\r' | sed -e ':a;N;$!ba;s/\n //g' | grep "Plugin-Dependencies:" | sed -e 's/Plugin-Dependencies://g' -e 's/,/ /g' )
+    for PD in $(unzip -p ${JENKINS_HOME}/plugins/${NAME}.hpi META-INF/MANIFEST.MF | tr -d '\r' | sed -e ':a;N;$!ba;s/\n //g' | grep "Plugin-Dependencies:" | sed -e 's/Plugin-Dependencies://g' -e 's/,/ /g' )
     do
       doInstall $PD
     done
