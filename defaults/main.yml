@@ -5,7 +5,7 @@ jenkins_groups: [ "jenkins" ]
 
 jenkins_repo_baseurl: http://pkg.jenkins.io/redhat-stable
 jenkins_repo_gpgkey: https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-jenkins_repo_packages: [ "java-1.8.0-openjdk","jenkins","initscripts","unzip" ]
+jenkins_repo_packages: [ "java-1.8.0-openjdk","jenkins","initscripts","unzip","git" ]
 
 jenkins_plugins: [ "configuration-as-code" ]
 
