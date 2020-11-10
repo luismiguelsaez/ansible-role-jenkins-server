@@ -6,12 +6,18 @@ PLUGINS_LIST=$@
 
 doInstall(){
 
- NAME=$(echo $1 | cut -f1 -d:)
- VERS=$(echo $1 | cut -f2 -d:)
+ NAME=$(echo $1 | awk -F: '{print $1;}')
+ VERS=$(echo $1 | awk -F: '{print $2;}')
 
  if [ ! -d ${JENKINS_HOME}/plugins/${NAME} ]
- then 
-  curl -sL https://updates.jenkins-ci.org/latest/${NAME}.hpi -o ${JENKINS_HOME}/plugins/${NAME}.hpi
+ then
+ 
+  if [ -z $VERS ]
+  then
+    curl -sL https://updates.jenkins-ci.org/latest/${NAME}.hpi -o ${JENKINS_HOME}/plugins/${NAME}.hpi
+  else
+    curl -sL https://updates.jenkins-ci.org/download/plugins/${NAME}/${VERS}/${NAME}.hpi -o ${JENKINS_HOME}/plugins/${NAME}.hpi
+  fi
 
   #unzip -qu -d ${JENKINS_HOME}/plugins/${NAME} ${JENKINS_HOME}/plugins/${NAME}.hpi
 
